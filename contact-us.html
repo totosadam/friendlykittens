@@ -3,11 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<script src="./support.js"></script>
-</head>
-<body>
-<x-dc>
-<helmet>
+
   <title>Contact Friendly Kittens · Call 571-479-3216 · Waterford, Virginia</title>
   <meta name="description" content="Call, email or book an appointment to meet our Himalayan and Persian kittens in Waterford, VA: 20 minutes from Leesburg and Dulles, 45 minutes from Washington, DC.">
   <meta name="robots" content="index,follow,max-image-preview:large">
@@ -24,7 +20,7 @@
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Contact Friendly Kittens · Call 571-479-3216 · Waterford, Virginia">
   <meta name="twitter:description" content="Call, email or book an appointment to meet our Himalayan and Persian kittens in Waterford, VA: 20 minutes from Leesburg and Dulles, 45 minutes from Washington, DC.">
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":["LocalBusiness","PetStore"],"@id":"https://friendlykittens.com/#business","name":"Friendly Kittens","alternateName":"FriendlyKittens.com","description":"Home-raised Himalayan and Persian kittens in Waterford, Northern Virginia. Hand raised with children and other pets, PKD negative and a feline leukemia negative colony.","url":"https://friendlykittens.com/","telephone":"+1-571-479-3216","email":"friendlykittens92@gmail.com","founder":{"@type":"Person","name":"Sean Donovan"},"address":{"@type":"PostalAddress","addressLocality":"Waterford","addressRegion":"VA","addressCountry":"US"},"areaServed":["Waterford VA","Leesburg VA","Loudoun County VA","Northern Virginia","Washington DC","Charles Town WV","Maryland"],"knowsAbout":["Himalayan cats","Persian cats","kitten socialisation"],"priceRange":"$$","openingHoursSpecification":{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],"opens":"09:00","closes":"19:00","description":"Visits by appointment"},"sameAs":["https://www.facebook.com/friendlykittens/","https://www.instagram.com/friendlykittensva/","https://tica.org/cattery/friendlykittens/"],"makesOffer":{"@type":"Offer","priceCurrency":"USD","price":"1400","availability":"https://schema.org/InStock","itemOffered":{"@type":"Product","name":"Hand-raised Himalayan kitten","category":"Himalayan kitten"}}}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":["LocalBusiness","PetStore"],"@id":"https://friendlykittens.com/#business","name":"Friendly Kittens","alternateName":"FriendlyKittens.com","description":"Home-raised Himalayan and Persian kittens in Waterford, Northern Virginia. Hand raised with children and other pets, PKD negative and a feline leukemia negative colony.","url":"https://friendlykittens.com/","telephone":"+1-571-479-3216","email":"friendlykittens92@gmail.com","founder":{"@type":"Person","name":"Sean Donovan"},"address":{"@type":"PostalAddress","addressLocality":"Waterford","addressRegion":"VA","addressCountry":"US"},"areaServed":["Waterford VA","Leesburg VA","Loudoun County VA","Northern Virginia","Washington DC","Charles Town WV","Maryland"],"knowsAbout":["Himalayan cats","Persian cats","kitten socialisation"],"priceRange":"$","openingHoursSpecification":{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],"opens":"09:00","closes":"19:00","description":"Visits by appointment"},"sameAs":["https://www.facebook.com/friendlykittens/","https://www.instagram.com/friendlykittensva/","https://tica.org/cattery/friendlykittens/"],"makesOffer":{"@type":"Offer","priceCurrency":"USD","price":"1400","availability":"https://schema.org/InStock","itemOffered":{"@type":"Product","name":"Hand-raised Himalayan kitten","category":"Himalayan kitten"}}}</script>
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://friendlykittens.com/"},{"@type":"ListItem","position":2,"name":"Contact us","item":"https://friendlykittens.com/contact-us/"}]}</script>
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"ContactPage","name":"Contact Friendly Kittens","url":"https://friendlykittens.com/contact-us/","about":{"@id":"https://friendlykittens.com/#business"}}</script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -67,7 +63,10 @@
       p, li { text-wrap: pretty; }
     }
   </style>
-</helmet>
+
+</head>
+<body>
+
 
 <div style="width:100%;overflow-x:hidden">
 
@@ -142,25 +141,25 @@
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:18px 20px;margin-bottom:18px" class="feat-grid">
         <label style="display:flex;flex-direction:column;gap:7px">
           <span style="font-size:12px;font-weight:800;letter-spacing:.14em;color:#a1917c">YOUR NAME</span>
-          <input type="text" value="{{ nameVal }}" onChange="{{ onName }}" placeholder="Jane Donovan" style="font-family:'Mulish',sans-serif;font-size:16px;color:#241f19;background:#fff;border:1.5px solid #e0d2bd;border-radius:12px;padding:13px 15px;outline:none;transition:border-color .15s" style-focus="border-color:#8a5a34">
+          <input type="text" id="cf-name" name="name" placeholder="Jane Donovan" style="font-family:'Mulish',sans-serif;font-size:16px;color:#241f19;background:#fff;border:1.5px solid #e0d2bd;border-radius:12px;padding:13px 15px;outline:none;transition:border-color .15s" style-focus="border-color:#8a5a34">
         </label>
         <label style="display:flex;flex-direction:column;gap:7px">
           <span style="font-size:12px;font-weight:800;letter-spacing:.14em;color:#a1917c">EMAIL</span>
-          <input type="email" value="{{ emailVal }}" onChange="{{ onEmail }}" placeholder="you@example.com" style="font-family:'Mulish',sans-serif;font-size:16px;color:#241f19;background:#fff;border:1.5px solid #e0d2bd;border-radius:12px;padding:13px 15px;outline:none;transition:border-color .15s" style-focus="border-color:#8a5a34">
+          <input type="email" id="cf-email" name="email" placeholder="you@example.com" style="font-family:'Mulish',sans-serif;font-size:16px;color:#241f19;background:#fff;border:1.5px solid #e0d2bd;border-radius:12px;padding:13px 15px;outline:none;transition:border-color .15s" style-focus="border-color:#8a5a34">
         </label>
       </div>
       <div style="display:grid;grid-template-columns:1fr;gap:18px;margin-bottom:22px">
         <label style="display:flex;flex-direction:column;gap:7px">
           <span style="font-size:12px;font-weight:800;letter-spacing:.14em;color:#a1917c">PHONE (OPTIONAL)</span>
-          <input type="tel" value="{{ phoneVal }}" onChange="{{ onPhone }}" placeholder="571-000-0000" style="font-family:'Mulish',sans-serif;font-size:16px;color:#241f19;background:#fff;border:1.5px solid #e0d2bd;border-radius:12px;padding:13px 15px;outline:none;transition:border-color .15s" style-focus="border-color:#8a5a34">
+          <input type="tel" id="cf-phone" name="phone" placeholder="571-000-0000" style="font-family:'Mulish',sans-serif;font-size:16px;color:#241f19;background:#fff;border:1.5px solid #e0d2bd;border-radius:12px;padding:13px 15px;outline:none;transition:border-color .15s" style-focus="border-color:#8a5a34">
         </label>
         <label style="display:flex;flex-direction:column;gap:7px">
           <span style="font-size:12px;font-weight:800;letter-spacing:.14em;color:#a1917c">WHAT ARE YOU LOOKING FOR?</span>
-          <textarea rows="5" value="{{ messageVal }}" onChange="{{ onMessage }}" placeholder="A seal point Himalayan for a quiet house with one older child, hoping for the spring." style="font-family:'Mulish',sans-serif;font-size:16px;color:#241f19;background:#fff;border:1.5px solid #e0d2bd;border-radius:12px;padding:13px 15px;outline:none;resize:vertical;transition:border-color .15s" style-focus="border-color:#8a5a34"></textarea>
+          <textarea id="cf-message" name="message" rows="5" placeholder="A seal point Himalayan for a quiet house with one older child, hoping for the spring." style="font-family:'Mulish',sans-serif;font-size:16px;color:#241f19;background:#fff;border:1.5px solid #e0d2bd;border-radius:12px;padding:13px 15px;outline:none;resize:vertical;transition:border-color .15s" style-focus="border-color:#8a5a34"></textarea>
         </label>
       </div>
       <div style="display:flex;gap:14px;flex-wrap:wrap;align-items:center">
-        <a href="{{ mailto }}" style="display:inline-block;background:#8a5a34;color:#fff;font-weight:700;font-size:16px;padding:15px 28px;border-radius:999px;transition:background .15s" style-hover="background:#6f4728">Open this in email</a>
+        <a href="#" id="cf-mailto-btn" style="display:inline-block;background:#8a5a34;color:#fff;font-weight:700;font-size:16px;padding:15px 28px;border-radius:999px;transition:background .15s" style-hover="background:#6f4728">Open this in email</a>
         <a href="tel:5714793216" style="display:inline-block;border:1.5px solid #d3c8b6;color:#463f36;font-weight:700;font-size:16px;padding:15px 28px;border-radius:999px;transition:border-color .15s,color .15s" style-hover="border-color:#8a5a34;color:#8a5a34">Or just call us</a>
       </div>
     </div>
@@ -277,29 +276,23 @@
     </div>
   </footer>
 </div>
-</x-dc>
-<script type="text/x-dc" data-dc-script>
-class Component extends DCLogic {
-  state = { name: '', email: '', phone: '', message: '' };
-  set(k) { return e => this.setState({ [k]: e.target.value }); }
-  renderVals() {
-    const s = this.state;
-    const lines = [
-      'Name: ' + (s.name || ''),
-      'Email: ' + (s.email || ''),
-      'Phone: ' + (s.phone || ''),
-      '',
-      s.message || ''
-    ].join('\n');
-    return {
-      nameVal: s.name, emailVal: s.email, phoneVal: s.phone, messageVal: s.message,
-      onName: this.set('name'), onEmail: this.set('email'), onPhone: this.set('phone'), onMessage: this.set('message'),
-      mailto: 'mailto:friendlykittens92@gmail.com?subject=' +
-        encodeURIComponent('Kitten enquiry' + (s.name ? ' from ' + s.name : '')) +
-        '&body=' + encodeURIComponent(lines)
-    };
-  }
-}
+
+
+<script>
+  document.getElementById('cf-mailto-btn').addEventListener('click', function (e) {
+    e.preventDefault();
+    var name = document.getElementById('cf-name').value.trim();
+    var email = document.getElementById('cf-email').value.trim();
+    var phone = document.getElementById('cf-phone').value.trim();
+    var message = document.getElementById('cf-message').value.trim();
+    var lines = [];
+    if (email) lines.push('Email: ' + email);
+    if (phone) lines.push('Phone: ' + phone);
+    if (message) lines.push('', message);
+    var body = encodeURIComponent(lines.join('\n'));
+    var subject = 'Kitten enquiry' + (name ? ' from ' + name : '');
+    window.location.href = 'mailto:friendlykittens92@gmail.com?subject=' + encodeURIComponent(subject) + '&body=' + body;
+  });
 </script>
 </body>
 </html>
