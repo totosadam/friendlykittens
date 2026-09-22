@@ -1,0 +1,37 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "photos"
+public_folder: "/photos"
+
+collections:
+  - name: "kittens"
+    label: "Available Kittens"
+    files:
+      - file: "content/kittens.json"
+        label: "Kitten Listings"
+        name: "kittens"
+        fields:
+          - label: "Kittens"
+            name: "kittens"
+            widget: "list"
+            summary: "{{fields.name}} — {{fields.status}}"
+            fields:
+              - {label: "Name", name: "name", widget: "string"}
+              - {label: "Color / Breed", name: "color", widget: "string"}
+              - {label: "Sex", name: "sex", widget: "select", options: ["Male", "Female"]}
+              - {label: "Status", name: "status", widget: "select", options: ["Available", "Reserved"], default: "Available"}
+              - {label: "Price", name: "price", widget: "number", value_type: "int", default: 1400}
+              - {label: "Photo", name: "photo", widget: "image", required: false}
+
+  - name: "settings"
+    label: "Site Settings"
+    files:
+      - file: "content/settings.json"
+        label: "Pricing & Contact"
+        name: "settings"
+        fields:
+          - {label: "Base adoption price ($)", name: "price", widget: "number", value_type: "int"}
+          - {label: "Phone number", name: "phone", widget: "string"}
+          - {label: "Email", name: "email", widget: "string"}
