@@ -32,16 +32,114 @@ collections:
         label: "Gallery Photos"
         name: "gallery"
         fields:
-          - label: "Top pair (large photos)"
-            name: "top"
-            widget: "list"
+          - label: "Top photo 1"
+            name: "top_1"
+            widget: "object"
+            collapsed: true
             summary: "{{fields.alt}}"
             fields:
               - {label: "Photo", name: "image", widget: "image"}
               - {label: "Description (for accessibility)", name: "alt", widget: "string"}
-          - label: "Photo grid"
-            name: "grid"
-            widget: "list"
+          - label: "Top photo 2"
+            name: "top_2"
+            widget: "object"
+            collapsed: true
+            summary: "{{fields.alt}}"
+            fields:
+              - {label: "Photo", name: "image", widget: "image"}
+              - {label: "Description (for accessibility)", name: "alt", widget: "string"}
+          - label: "Grid photo 1"
+            name: "grid_1"
+            widget: "object"
+            collapsed: true
+            summary: "{{fields.alt}}"
+            fields:
+              - {label: "Photo", name: "image", widget: "image"}
+              - {label: "Description (for accessibility)", name: "alt", widget: "string"}
+          - label: "Grid photo 2"
+            name: "grid_2"
+            widget: "object"
+            collapsed: true
+            summary: "{{fields.alt}}"
+            fields:
+              - {label: "Photo", name: "image", widget: "image"}
+              - {label: "Description (for accessibility)", name: "alt", widget: "string"}
+          - label: "Grid photo 3"
+            name: "grid_3"
+            widget: "object"
+            collapsed: true
+            summary: "{{fields.alt}}"
+            fields:
+              - {label: "Photo", name: "image", widget: "image"}
+              - {label: "Description (for accessibility)", name: "alt", widget: "string"}
+          - label: "Grid photo 4"
+            name: "grid_4"
+            widget: "object"
+            collapsed: true
+            summary: "{{fields.alt}}"
+            fields:
+              - {label: "Photo", name: "image", widget: "image"}
+              - {label: "Description (for accessibility)", name: "alt", widget: "string"}
+          - label: "Grid photo 5"
+            name: "grid_5"
+            widget: "object"
+            collapsed: true
+            summary: "{{fields.alt}}"
+            fields:
+              - {label: "Photo", name: "image", widget: "image"}
+              - {label: "Description (for accessibility)", name: "alt", widget: "string"}
+          - label: "Grid photo 6"
+            name: "grid_6"
+            widget: "object"
+            collapsed: true
+            summary: "{{fields.alt}}"
+            fields:
+              - {label: "Photo", name: "image", widget: "image"}
+              - {label: "Description (for accessibility)", name: "alt", widget: "string"}
+          - label: "Grid photo 7"
+            name: "grid_7"
+            widget: "object"
+            collapsed: true
+            summary: "{{fields.alt}}"
+            fields:
+              - {label: "Photo", name: "image", widget: "image"}
+              - {label: "Description (for accessibility)", name: "alt", widget: "string"}
+          - label: "Grid photo 8"
+            name: "grid_8"
+            widget: "object"
+            collapsed: true
+            summary: "{{fields.alt}}"
+            fields:
+              - {label: "Photo", name: "image", widget: "image"}
+              - {label: "Description (for accessibility)", name: "alt", widget: "string"}
+          - label: "Grid photo 9"
+            name: "grid_9"
+            widget: "object"
+            collapsed: true
+            summary: "{{fields.alt}}"
+            fields:
+              - {label: "Photo", name: "image", widget: "image"}
+              - {label: "Description (for accessibility)", name: "alt", widget: "string"}
+          - label: "Grid photo 10"
+            name: "grid_10"
+            widget: "object"
+            collapsed: true
+            summary: "{{fields.alt}}"
+            fields:
+              - {label: "Photo", name: "image", widget: "image"}
+              - {label: "Description (for accessibility)", name: "alt", widget: "string"}
+          - label: "Grid photo 11"
+            name: "grid_11"
+            widget: "object"
+            collapsed: true
+            summary: "{{fields.alt}}"
+            fields:
+              - {label: "Photo", name: "image", widget: "image"}
+              - {label: "Description (for accessibility)", name: "alt", widget: "string"}
+          - label: "Grid photo 12"
+            name: "grid_12"
+            widget: "object"
+            collapsed: true
             summary: "{{fields.alt}}"
             fields:
               - {label: "Photo", name: "image", widget: "image"}

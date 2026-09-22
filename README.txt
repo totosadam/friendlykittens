@@ -9,8 +9,9 @@ Pages
   faq.html                FAQ
 
 Also included
-  support.js   required runtime — keep it beside the pages
   photos/      every photograph on the site
+  admin/       client login (Decap CMS) for editing kitten listings
+  content/     kittens.json and settings.json — the data the admin edits
   robots.txt   for search engines
   sitemap.xml  update the dates when you publish
 

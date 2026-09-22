@@ -1,20 +1,58 @@
 {
-  "top": [
-    { "image": "photos/visit-02.webp", "alt": "A litter of Himalayan kittens with their mothers at home" },
-    { "image": "photos/family-01.webp", "alt": "A child holding one of our grown Himalayan cats at home in Waterford, Virginia" }
-  ],
-  "grid": [
-    { "image": "photos/hero-himalayan-kitten.webp", "alt": "Two blue point Himalayan kittens hand raised in our home in Waterford, Virginia" },
-    { "image": "photos/kitten-02.webp", "alt": "A seal point Himalayan kitten resting" },
-    { "image": "photos/kitten-01.webp", "alt": "A cream point Himalayan kitten on its cat tree" },
-    { "image": "photos/visit-01.webp", "alt": "Two blue point Himalayan kittens close up" },
-    { "image": "photos/kitten-03.webp", "alt": "A seal point Himalayan kitten stretched out on the cat tree" },
-    { "image": "photos/visit-04.webp", "alt": "Three seal point Himalayan kittens on a cat tree" },
-    { "image": "photos/kitten-04.webp", "alt": "A black Persian kitten being carried by one of the family" },
-    { "image": "photos/visit-03.webp", "alt": "Himalayan kittens playing on the cat tree" },
-    { "image": "photos/kitten-05.webp", "alt": "A blue point Himalayan kitten held in one hand" },
-    { "image": "photos/kitten-06.webp", "alt": "A blue point Himalayan kitten sitting on a blanket" },
-    { "image": "photos/kitten-07.webp", "alt": "A silver point Himalayan kitten with blue eyes" },
-    { "image": "photos/kitten-08.webp", "alt": "Two grown Himalayan cats held by a member of the family" }
-  ]
+  "top_1": {
+    "image": "photos/visit-02.webp",
+    "alt": "A litter of Himalayan kittens with their mothers at home"
+  },
+  "top_2": {
+    "image": "photos/family-01.webp",
+    "alt": "A child holding one of our grown Himalayan cats at home in Waterford, Virginia"
+  },
+  "grid_1": {
+    "image": "photos/hero-himalayan-kitten.webp",
+    "alt": "Two blue point Himalayan kittens hand raised in our home in Waterford, Virginia"
+  },
+  "grid_2": {
+    "image": "photos/kitten-02.webp",
+    "alt": "A seal point Himalayan kitten resting"
+  },
+  "grid_3": {
+    "image": "photos/kitten-01.webp",
+    "alt": "A cream point Himalayan kitten on its cat tree"
+  },
+  "grid_4": {
+    "image": "photos/visit-01.webp",
+    "alt": "Two blue point Himalayan kittens close up"
+  },
+  "grid_5": {
+    "image": "photos/kitten-03.webp",
+    "alt": "A seal point Himalayan kitten stretched out on the cat tree"
+  },
+  "grid_6": {
+    "image": "photos/visit-04.webp",
+    "alt": "Three seal point Himalayan kittens on a cat tree"
+  },
+  "grid_7": {
+    "image": "photos/kitten-04.webp",
+    "alt": "A black Persian kitten being carried by one of the family"
+  },
+  "grid_8": {
+    "image": "photos/visit-03.webp",
+    "alt": "Himalayan kittens playing on the cat tree"
+  },
+  "grid_9": {
+    "image": "photos/kitten-05.webp",
+    "alt": "A blue point Himalayan kitten held in one hand"
+  },
+  "grid_10": {
+    "image": "photos/kitten-06.webp",
+    "alt": "A blue point Himalayan kitten sitting on a blanket"
+  },
+  "grid_11": {
+    "image": "photos/kitten-07.webp",
+    "alt": "A silver point Himalayan kitten with blue eyes"
+  },
+  "grid_12": {
+    "image": "photos/kitten-08.webp",
+    "alt": "Two grown Himalayan cats held by a member of the family"
+  }
 }
