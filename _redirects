@@ -1,0 +1,46 @@
+# Old website addresses → new pages
+/Friendly_Kittens/Contact_Us.html   /contact-us/        301!
+/Friendly_Kittens/About_Us.html     /about-us/          301!
+/Friendly_Kittens/Kittens.html      /available-kittens/ 301!
+/Friendly_Kittens/*                 /                   301!
+/index.html                         /                   301!
+
+# Clean URLs used by the canonical tags and sitemap
+/available-kittens   /available-kittens.html  200
+/available-kittens/  /available-kittens.html  200
+/about-us            /about-us.html           200
+/about-us/           /about-us.html           200
+/faq                 /faq.html                200
+/faq/                /faq.html                200
+/contact-us          /contact-us.html         200
+/contact-us/         /contact-us.html         200
+/blog   /blog.html  200
+/blog/  /blog.html  200
+/blog/himalayan-persian-kitten-cost   /blog-himalayan-persian-kitten-cost.html  200
+/blog/himalayan-persian-kitten-cost/  /blog-himalayan-persian-kitten-cost.html  200
+/blog/himalayan-vs-persian   /blog-himalayan-vs-persian.html  200
+/blog/himalayan-vs-persian/  /blog-himalayan-vs-persian.html  200
+/blog/how-to-choose-healthy-himalayan-kitten   /blog-how-to-choose-healthy-himalayan-kitten.html  200
+/blog/how-to-choose-healthy-himalayan-kitten/  /blog-how-to-choose-healthy-himalayan-kitten.html  200
+/blog/himalayan-persian-grooming-guide   /blog-himalayan-persian-grooming-guide.html  200
+/blog/himalayan-persian-grooming-guide/  /blog-himalayan-persian-grooming-guide.html  200
+/blog/himalayan-cat-colors   /blog-himalayan-cat-colors.html  200
+/blog/himalayan-cat-colors/  /blog-himalayan-cat-colors.html  200
+/blog/bringing-home-new-kitten-checklist   /blog-bringing-home-new-kitten-checklist.html  200
+/blog/bringing-home-new-kitten-checklist/  /blog-bringing-home-new-kitten-checklist.html  200
+/blog/himalayan-kittens-for-sale-virginia   /blog-himalayan-kittens-for-sale-virginia.html  200
+/blog/himalayan-kittens-for-sale-virginia/  /blog-himalayan-kittens-for-sale-virginia.html  200
+/blog/himalayan-cats-health-problems   /blog-himalayan-cats-health-problems.html  200
+/blog/himalayan-cats-health-problems/  /blog-himalayan-cats-health-problems.html  200
+/blog/are-himalayan-cats-good-with-kids   /blog-are-himalayan-cats-good-with-kids.html  200
+/blog/are-himalayan-cats-good-with-kids/  /blog-are-himalayan-cats-good-with-kids.html  200
+/blog/are-himalayan-cats-hypoallergenic   /blog-are-himalayan-cats-hypoallergenic.html  200
+/blog/are-himalayan-cats-hypoallergenic/  /blog-are-himalayan-cats-hypoallergenic.html  200
+/blog/how-long-do-himalayan-cats-live   /blog-how-long-do-himalayan-cats-live.html  200
+/blog/how-long-do-himalayan-cats-live/  /blog-how-long-do-himalayan-cats-live.html  200
+/blog/adopting-two-kittens   /blog-adopting-two-kittens.html  200
+/blog/adopting-two-kittens/  /blog-adopting-two-kittens.html  200
+/blog/male-or-female-himalayan   /blog-male-or-female-himalayan.html  200
+/blog/male-or-female-himalayan/  /blog-male-or-female-himalayan.html  200
+/blog/indoor-himalayan-cat-care   /blog-indoor-himalayan-cat-care.html  200
+/blog/indoor-himalayan-cat-care/  /blog-indoor-himalayan-cat-care.html  200

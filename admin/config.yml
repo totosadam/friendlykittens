@@ -136,3 +136,22 @@ collections:
           - {label: "Base adoption price ($)", name: "price", widget: "number", value_type: "int"}
           - {label: "Phone number", name: "phone", widget: "string"}
           - {label: "Email", name: "email", widget: "string"}
+  - name: "blog"
+    label: "Blog Posts"
+    files:
+      - file: "content/posts.json"
+        label: "Blog Posts"
+        name: "posts"
+        fields:
+          - label: "Posts"
+            name: "posts"
+            widget: "list"
+            summary: "{{fields.title}}"
+            fields:
+              - {label: "Title", name: "title", widget: "string"}
+              - {label: "Web address (short, lowercase, dashes — e.g. new-litter-spring)", name: "slug", widget: "string"}
+              - {label: "Date", name: "date", widget: "datetime", format: "YYYY-MM-DD", date_format: "YYYY-MM-DD", time_format: false}
+              - {label: "Photo", name: "image", widget: "image"}
+              - {label: "Photo description", name: "alt", widget: "string"}
+              - {label: "Short summary (1–2 sentences, shows on Google)", name: "summary", widget: "text"}
+              - {label: "Post", name: "body", widget: "markdown"}

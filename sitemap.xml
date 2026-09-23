@@ -1,33 +1,154 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://friendlykittens.com/</loc>
-    <lastmod>2026-09-18</lastmod>
+    <lastmod>2026-09-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
+    <image:image><image:loc>https://friendlykittens.com/photos/hero-himalayan-kitten.webp</image:loc></image:image>
+    <image:image><image:loc>https://friendlykittens.com/photos/litter-together.webp</image:loc></image:image>
+    <image:image><image:loc>https://friendlykittens.com/photos/sean-donovan.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://friendlykittens.com/available-kittens/</loc>
-    <lastmod>2026-09-18</lastmod>
+    <lastmod>2026-09-23</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
+    <image:image><image:loc>https://friendlykittens.com/photos/kitten-01.webp</image:loc></image:image>
+    <image:image><image:loc>https://friendlykittens.com/photos/kitten-02.webp</image:loc></image:image>
+    <image:image><image:loc>https://friendlykittens.com/photos/kitten-03.webp</image:loc></image:image>
+    <image:image><image:loc>https://friendlykittens.com/photos/kitten-04.webp</image:loc></image:image>
+    <image:image><image:loc>https://friendlykittens.com/photos/kitten-05.webp</image:loc></image:image>
+    <image:image><image:loc>https://friendlykittens.com/photos/kitten-06.webp</image:loc></image:image>
+    <image:image><image:loc>https://friendlykittens.com/photos/kitten-07.webp</image:loc></image:image>
+    <image:image><image:loc>https://friendlykittens.com/photos/kitten-08.webp</image:loc></image:image>
+    <image:image><image:loc>https://friendlykittens.com/photos/visit-01.webp</image:loc></image:image>
+    <image:image><image:loc>https://friendlykittens.com/photos/visit-02.webp</image:loc></image:image>
+    <image:image><image:loc>https://friendlykittens.com/photos/visit-03.webp</image:loc></image:image>
+    <image:image><image:loc>https://friendlykittens.com/photos/visit-04.webp</image:loc></image:image>
+    <image:image><image:loc>https://friendlykittens.com/photos/family-01.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://friendlykittens.com/about-us/</loc>
-    <lastmod>2026-09-18</lastmod>
+    <lastmod>2026-09-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image><image:loc>https://friendlykittens.com/photos/sean-donovan.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://friendlykittens.com/faq/</loc>
-    <lastmod>2026-09-18</lastmod>
+    <lastmod>2026-09-23</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://friendlykittens.com/contact-us/</loc>
-    <lastmod>2026-09-18</lastmod>
+    <lastmod>2026-09-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://friendlykittens.com/blog/</loc>
+    <lastmod>2026-09-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://friendlykittens.com/blog/himalayan-persian-kitten-cost/</loc>
+    <lastmod>2026-09-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image><image:loc>https://friendlykittens.com/photos/kitten-02.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://friendlykittens.com/blog/himalayan-vs-persian/</loc>
+    <lastmod>2026-09-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image><image:loc>https://friendlykittens.com/photos/kitten-05.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://friendlykittens.com/blog/how-to-choose-healthy-himalayan-kitten/</loc>
+    <lastmod>2026-09-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image><image:loc>https://friendlykittens.com/photos/kitten-01.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://friendlykittens.com/blog/himalayan-persian-grooming-guide/</loc>
+    <lastmod>2026-09-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image><image:loc>https://friendlykittens.com/photos/kitten-06.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://friendlykittens.com/blog/himalayan-cat-colors/</loc>
+    <lastmod>2026-09-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image><image:loc>https://friendlykittens.com/photos/kitten-07.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://friendlykittens.com/blog/bringing-home-new-kitten-checklist/</loc>
+    <lastmod>2026-09-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image><image:loc>https://friendlykittens.com/photos/visit-04.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://friendlykittens.com/blog/himalayan-kittens-for-sale-virginia/</loc>
+    <lastmod>2026-09-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image><image:loc>https://friendlykittens.com/photos/hero-himalayan-kitten.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://friendlykittens.com/blog/himalayan-cats-health-problems/</loc>
+    <lastmod>2026-09-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image><image:loc>https://friendlykittens.com/photos/kitten-03.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://friendlykittens.com/blog/are-himalayan-cats-good-with-kids/</loc>
+    <lastmod>2026-09-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image><image:loc>https://friendlykittens.com/photos/family-01.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://friendlykittens.com/blog/are-himalayan-cats-hypoallergenic/</loc>
+    <lastmod>2026-09-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image><image:loc>https://friendlykittens.com/photos/kitten-08.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://friendlykittens.com/blog/how-long-do-himalayan-cats-live/</loc>
+    <lastmod>2026-09-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image><image:loc>https://friendlykittens.com/photos/visit-01.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://friendlykittens.com/blog/adopting-two-kittens/</loc>
+    <lastmod>2026-09-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image><image:loc>https://friendlykittens.com/photos/visit-03.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://friendlykittens.com/blog/male-or-female-himalayan/</loc>
+    <lastmod>2026-09-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image><image:loc>https://friendlykittens.com/photos/kitten-04.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://friendlykittens.com/blog/indoor-himalayan-cat-care/</loc>
+    <lastmod>2026-09-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image><image:loc>https://friendlykittens.com/photos/visit-02.webp</image:loc></image:image>
   </url>
 </urlset>
