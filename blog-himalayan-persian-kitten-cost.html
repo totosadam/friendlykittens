@@ -68,6 +68,26 @@
       section, nav > div, footer > div > div { padding-left: 20px !important; padding-right: 20px !important; }
       p, li { text-wrap: pretty; }
     }
+    @media (max-width: 1040px) {
+      .navrow { gap: 12px !important; }
+      .menu-btn { display: flex !important; order: 3; }
+      .navrow > a[href^="tel"] { order: 2; margin-left: auto; }
+      .navlinks { display: none !important; }
+      nav.open .navlinks { display: flex !important; order: 4; flex-direction: column; width: 100%; gap: 0 !important; font-size: 17px !important; border-top: 1px solid #ece4d8; padding-top: 4px; }
+      nav.open .navlinks > a { padding: 14px 0 !important; border-bottom: 1px solid #f1ebe1; }
+      nav.open .navlinks > a:last-child { border-bottom: 0; }
+      .menu-btn:hover { background: #f3ece1 !important; }
+    }
+    @media (max-width: 560px) {
+      .navrow { padding: 12px 18px !important; }
+      .navrow > a:first-child { gap: 10px !important; min-width: 0; flex: 1; }
+      .navrow > a:first-child > span:first-child { width: 38px !important; height: 38px !important; }
+      .navrow > a:first-child > span:last-child > span:first-child { font-size: 20px !important; }
+      .brand-kicker { font-size: 9px !important; letter-spacing: .12em !important; white-space: normal !important; }
+      .navrow > a[href^="tel"] { width: 44px; height: 44px; padding: 0 !important; display: flex; align-items: center; justify-content: center; }
+      .navrow > a[href^="tel"] .call-txt { display: none; }
+      .navrow > a[href^="tel"] .call-ico { display: block !important; }
+    }
   </style>
 
 </head>
@@ -92,6 +112,7 @@
           <span style="font-size:11px;font-weight:700;letter-spacing:.18em;color:#a1917c" class="brand-kicker">SEAN DONOVAN · WATERFORD, VA</span>
         </span>
       </a>
+        <button type="button" class="menu-btn" aria-label="Menu" aria-expanded="false" onclick="var o=this.closest('nav').classList.toggle('open');this.setAttribute('aria-expanded',o)" style="display:none;width:44px;height:44px;align-items:center;justify-content:center;border:1px solid #e3d8c8;border-radius:12px;background:transparent;color:#463f36;cursor:pointer;padding:0"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"></path></svg></button>
         <div style="display:flex;gap:26px;font-size:15px;flex:1;justify-content:flex-end" class="navlinks">
           <a href="available-kittens.html" style="color:#463f36;font-weight:600">Available kittens</a>
           <a href="about-us.html" style="color:#463f36;font-weight:600">About us</a>
@@ -99,7 +120,7 @@
           <a href="blog.html" style="color:#8a5a34;font-weight:800" aria-current="page">Blog</a>
           <a href="contact-us.html" style="color:#463f36;font-weight:600">Contact</a>
         </div>
-        <a href="tel:5714793216" style="background:#8a5a34;color:#fff;font-weight:700;font-size:15px;padding:11px 22px;border-radius:999px;white-space:nowrap;transition:background .15s" style-hover="background:#6f4728">Call 571-479-3216</a>
+        <a aria-label="Call 571-479-3216" href="tel:5714793216" style="background:#8a5a34;color:#fff;font-weight:700;font-size:15px;padding:11px 22px;border-radius:999px;white-space:nowrap;transition:background .15s" style-hover="background:#6f4728"><span class="call-txt">Call 571-479-3216</span><svg class="call-ico" style="display:none" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"></path></svg></a>
       </div>
   </nav>
 
