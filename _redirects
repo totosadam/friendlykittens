@@ -5,6 +5,10 @@
 /Friendly_Kittens/*                 /                   301!
 /index.html                         /                   301!
 
+# Visual page editor
+/edit   /admin/editor.html  200
+/edit/  /admin/editor.html  200
+
 # Clean URLs used by the canonical tags and sitemap
 /available-kittens   /available-kittens.html  200
 /available-kittens/  /available-kittens.html  200
