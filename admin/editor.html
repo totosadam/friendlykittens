@@ -225,9 +225,16 @@ function b64dec(s){var bin=atob(s.replace(/\n/g,''));var u=new Uint8Array(bin.le
 function bytesB64(u){var s='';for(var i=0;i<u.length;i+=0x8000)s+=String.fromCharCode.apply(null,u.subarray(i,i+0x8000));return btoa(s)}
 function b64enc(str){return bytesB64(new TextEncoder().encode(str))}
 async function tok(){var u=netlifyIdentity.currentUser();if(!u)throw new Error('Please log in again');return u.jwt()}
-async function gh(path,opts){opts=opts||{};var t=await tok();var r=await fetch(API+path,Object.assign({},opts,{headers:{Authorization:'Bearer '+t,'Content-Type':'application/json'}}));if(!r.ok){var m=await r.text();var e=new Error(r.status+': '+m.slice(0,200));e.status=r.status;throw e}return r.json()}
+async function gh(path,opts){opts=opts||{};var t=await tok();if(!opts.method||opts.method==='GET'){path+=(path.indexOf('?')>-1?'&':'?')+'_='+Date.now()}var r=await fetch(API+path,Object.assign({cache:'no-store'},opts,{headers:{Authorization:'Bearer '+t,'Content-Type':'application/json','Cache-Control':'no-cache'}}));if(!r.ok){var m=await r.text();var e=new Error(r.status+': '+m.slice(0,200));e.status=r.status;throw e}return r.json()}
 async function getFile(p){var d=await gh('/contents/'+p+'?ref='+BRANCH);var c=d.content;if(!c){var b=await gh('/git/blobs/'+d.sha);c=b.content}return {text:b64dec(c),sha:d.sha}}
-async function putFile(p,b64,sha,msg){var body={message:msg,content:b64,branch:BRANCH};if(sha)body.sha=sha;return gh('/contents/'+p,{method:'PUT',body:JSON.stringify(body)})}
+async function freshSha(p){var dir=p.indexOf('/')>-1?p.slice(0,p.lastIndexOf('/')):'';var list=await gh('/contents/'+dir+'?ref='+BRANCH);var hit=(list||[]).filter(function(x){return x.path===p})[0];return hit?hit.sha:null}
+async function putFile(p,b64,sha,msg){
+  for(var i=0;i<4;i++){
+    var body={message:msg,content:b64,branch:BRANCH};if(sha)body.sha=sha;
+    try{return await gh('/contents/'+p,{method:'PUT',body:JSON.stringify(body)})}
+    catch(e){if(e.status!==409&&e.status!==422||i===3)throw e;await new Promise(function(r){setTimeout(r,1500*(i+1))});try{sha=await freshSha(p)}catch(x){}}
+  }
+}
 
 function buildPicker(){var s=$('page');s.innerHTML='';var g1=document.createElement('optgroup');g1.label='Pages';PAGES.forEach(function(p){var o=new Option(p[1],p[0]);g1.appendChild(o)});s.appendChild(g1);
   var g2=document.createElement('optgroup');g2.label='Blog guides';BLOGS.forEach(function(b){var n=b.replace(/-/g,' ');g2.appendChild(new Option(n.charAt(0).toUpperCase()+n.slice(1),'blog-'+b+'.html'))});s.appendChild(g2)}
