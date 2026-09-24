@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Page Editor · Friendly Kittens</title>
+<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Mulish:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box}
+html,body{margin:0;height:100%;font-family:'Mulish',system-ui,sans-serif;color:#241f19;background:#f6f1ea}
+a{color:#8a5a34}a:hover{color:#6d4526}
+button,select,input,textarea{font:inherit;color:inherit}
+.app{display:grid;grid-template-rows:auto auto 1fr;height:100vh}
+.top{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:10px 16px;background:#fff;border-bottom:1px solid #e6dccd}
+.brand{font-weight:800;font-size:15px;margin-right:6px;white-space:nowrap}
+.brand small{display:block;font-weight:700;font-size:11px;letter-spacing:.12em;color:#a1917c;text-transform:uppercase}
+.sp{flex:1}
+.btn{display:inline-flex;align-items:center;gap:6px;height:38px;padding:0 14px;border:1px solid #e0d4c3;border-radius:10px;background:#fff;cursor:pointer;font-weight:700;font-size:14px;white-space:nowrap;text-decoration:none;color:#241f19}
+.btn:hover{background:#f6efe5;color:#241f19}.btn:active{background:#ecdfcc}
+.btn:disabled{opacity:.45;cursor:default}
+.btn.primary{background:#8a5a34;border-color:#8a5a34;color:#fff}.btn.primary:hover{background:#744a29}
+.btn.danger{color:#a3321f;border-color:#ecc9c1}.btn.danger:hover{background:#fbeeea}
+.btn:focus-visible,select:focus-visible,input:focus-visible{outline:2px solid #8a5a34;outline-offset:2px}
+select.pick{height:38px;border:1px solid #e0d4c3;border-radius:10px;padding:0 10px;background:#fff;font-weight:700;min-width:220px;max-width:340px}
+.status{font-size:13px;color:#7a6f61;min-width:120px}
+.status.ok{color:#2f7a3d}.status.err{color:#a3321f}.status.dirty{color:#b0651f}
+.bar{display:flex;align-items:center;gap:4px;flex-wrap:wrap;padding:6px 16px;background:#fbf8f3;border-bottom:1px solid #e6dccd}
+.tb{min-width:36px;height:34px;padding:0 9px;border:1px solid transparent;border-radius:8px;background:transparent;cursor:pointer;font-size:14px;font-weight:700;display:inline-flex;align-items:center;justify-content:center;gap:4px}
+.tb:hover{background:#efe6d9;border-color:#e0d4c3}.tb:active{background:#e4d6c2}
+.sep{width:1px;height:22px;background:#e0d4c3;margin:0 6px}
+.sw{width:22px;height:22px;border-radius:6px;border:1px solid #d9ccb9;cursor:pointer;padding:0}
+.main{display:grid;grid-template-columns:minmax(0,1fr) 300px;min-height:0}
+.stage{overflow:auto;display:flex;justify-content:center;padding:16px;min-height:0}
+.stage iframe{border:0;background:#fff;width:100%;height:100%;min-height:600px;box-shadow:0 1px 4px rgba(60,40,20,.12);border-radius:6px}
+.stage.phone iframe{width:390px}
+.side{background:#fff;border-left:1px solid #e6dccd;overflow:auto;padding:16px;display:flex;flex-direction:column;gap:18px}
+.side h4{margin:0 0 8px;font-size:11px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:#a1917c}
+.crumbs{display:flex;flex-wrap:wrap;gap:4px}
+.crumb{font-size:12px;font-weight:700;padding:4px 8px;border-radius:999px;border:1px solid #e0d4c3;background:#fff;cursor:pointer}
+.crumb.on{background:#8a5a34;color:#fff;border-color:#8a5a34}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.grid2 .btn{justify-content:center;padding:0 8px;font-size:13px}
+.row{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+label.f{display:flex;flex-direction:column;gap:4px;font-size:13px;font-weight:700}
+label.f input,label.f textarea{border:1px solid #e0d4c3;border-radius:8px;padding:8px 10px;font-weight:400;background:#fff}
+.hint{font-size:13px;line-height:1.5;color:#7a6f61;margin:0}
+.muted{color:#a1917c}
+.overlay{position:fixed;inset:0;background:rgba(36,31,25,.45);display:none;align-items:center;justify-content:center;z-index:50;padding:20px}
+.overlay.on{display:flex}
+.dlg{background:#fff;border-radius:14px;padding:22px;width:min(560px,100%);max-height:90vh;overflow:auto;display:flex;flex-direction:column;gap:14px;box-shadow:0 12px 40px rgba(0,0,0,.25)}
+.dlg h3{margin:0;font-size:19px}
+.count{font-size:12px;color:#a1917c;font-weight:400}
+.login{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;height:100vh;text-align:center;padding:20px}
+.login h1{font-size:26px;margin:0}
+@media (max-width:900px){.main{grid-template-columns:1fr;grid-template-rows:1fr auto}.side{border-left:0;border-top:1px solid #e6dccd;max-height:40vh}}
+</style>
+</head>
+<body>
+
+<div class="login" id="login">
+  <h1>Friendly Kittens · Page editor</h1>
+  <p class="hint">Log in with the same email and password you use for the admin.</p>
+  <button class="btn primary" onclick="netlifyIdentity.open('login')">Log in</button>
+</div>
+
+<div class="app" id="app" style="display:none">
+  <div class="top">
+    <div class="brand">Friendly Kittens<small>Page editor</small></div>
+    <select class="pick" id="page" aria-label="Page to edit"></select>
+    <button class="btn" id="undo" title="Undo">↶ Undo</button>
+    <button class="btn" id="redo" title="Redo">↷ Redo</button>
+    <button class="btn" id="view" title="Preview size">📱 Phone view</button>
+    <button class="btn" id="seoBtn">Google title &amp; description</button>
+    <button class="btn" id="frBtn">Find &amp; replace (all pages)</button>
+    <button class="btn" id="histBtn">Backups</button>
+    <div class="sp"></div>
+    <span class="status" id="status"></span>
+    <a class="btn" id="live" href="/" target="_blank" rel="noopener">View live ↗</a>
+    <a class="btn" href="/admin/">Kittens, gallery &amp; new posts</a>
+    <button class="btn primary" id="save">Save &amp; publish</button>
+    <button class="btn" onclick="netlifyIdentity.logout()">Log out</button>
+  </div>
+
+  <div class="bar" id="fmt">
+    <button class="tb" data-cmd="bold" title="Bold (Ctrl+B)"><b>B</b></button>
+    <button class="tb" data-cmd="italic" title="Italic (Ctrl+I)"><i>I</i></button>
+    <button class="tb" data-cmd="underline" title="Underline (Ctrl+U)"><u>U</u></button>
+    <button class="tb" data-cmd="strikeThrough" title="Strike through"><s>S</s></button>
+    <span class="sep"></span>
+    <button class="tb" data-size="1.2" title="Bigger text">A+</button>
+    <button class="tb" data-size="0.85" title="Smaller text">A−</button>
+    <span class="sep"></span>
+    <button class="tb" data-block="h2" title="Make this a big heading">H1</button>
+    <button class="tb" data-block="h3" title="Make this a small heading">H2</button>
+    <button class="tb" data-block="p" title="Make this normal text">¶ Text</button>
+    <button class="tb" data-cmd="insertUnorderedList" title="Bullet list">• List</button>
+    <button class="tb" data-cmd="insertOrderedList" title="Numbered list">1. List</button>
+    <span class="sep"></span>
+    <button class="tb" id="linkBtn" title="Make a link">🔗 Link</button>
+    <button class="tb" data-cmd="unlink" title="Remove link">Unlink</button>
+    <button class="tb" id="imgBtn" title="Insert a photo where the cursor is">🖼 Photo</button>
+    <span class="sep"></span>
+    <span class="muted" style="font-size:12px;font-weight:700;margin-right:4px">Text colour</span>
+    <span id="colors" class="row" style="gap:4px"></span>
+    <input type="color" id="colorPick" class="sw" title="Any colour" value="#8a5a34">
+    <span class="sep"></span>
+    <button class="tb" data-cmd="justifyLeft" title="Align left">⟸</button>
+    <button class="tb" data-cmd="justifyCenter" title="Centre">≡</button>
+    <button class="tb" data-cmd="justifyRight" title="Align right">⟹</button>
+    <span class="sep"></span>
+    <button class="tb" data-cmd="removeFormat" title="Clear bold, colours and sizes from selected text">Clear style</button>
+  </div>
+
+  <div class="main">
+    <div class="stage" id="stage"><iframe id="frame" title="Page being edited"></iframe></div>
+    <aside class="side" id="side">
+      <div>
+        <h4>How to edit</h4>
+        <p class="hint">Click any text and type. Highlight words to make them bold, bigger, coloured or a link. Click a photo to replace it. Press <b>Save &amp; publish</b> when done: the live site updates in about a minute.</p>
+      </div>
+      <div id="selBox" style="display:none;flex-direction:column;gap:18px">
+        <div>
+          <h4>Selected</h4>
+          <div class="crumbs" id="crumbs"></div>
+        </div>
+        <div>
+          <h4>Move &amp; copy</h4>
+          <div class="grid2">
+            <button class="btn" id="bUp">↑ Move up</button>
+            <button class="btn" id="bDown">↓ Move down</button>
+            <button class="btn" id="bDup">⧉ Duplicate</button>
+            <button class="btn danger" id="bDel">✕ Delete</button>
+          </div>
+        </div>
+        <div id="imgBox" style="display:none">
+          <h4>Photo</h4>
+          <div style="display:flex;flex-direction:column;gap:8px">
+            <button class="btn primary" id="imgReplace">Replace photo…</button>
+            <label class="f">Photo description (for Google &amp; screen readers)<input id="imgAlt"></label>
+          </div>
+        </div>
+        <div id="linkBox" style="display:none">
+          <h4>Link / button</h4>
+          <div style="display:flex;flex-direction:column;gap:8px">
+            <label class="f">Goes to<input id="linkHref" placeholder="https://… or /contact-us/ or tel:…"></label>
+            <label class="row" style="font-size:13px;font-weight:700"><input type="checkbox" id="linkNew"> Open in a new tab</label>
+          </div>
+        </div>
+        <div>
+          <h4>Style of this block</h4>
+          <div style="display:flex;flex-direction:column;gap:10px">
+            <div class="row"><span style="font-size:13px;font-weight:700;width:80px">Text</span><span id="elColors" class="row" style="gap:4px"></span></div>
+            <div class="row"><span style="font-size:13px;font-weight:700;width:80px">Background</span><span id="elBgs" class="row" style="gap:4px"></span></div>
+            <div class="row"><span style="font-size:13px;font-weight:700;width:80px">Size</span>
+              <button class="btn" id="elSmaller" style="height:32px;padding:0 10px">A−</button>
+              <span id="elSize" style="font-size:13px;min-width:44px;text-align:center"></span>
+              <button class="btn" id="elBigger" style="height:32px;padding:0 10px">A+</button>
+            </div>
+            <div class="row"><span style="font-size:13px;font-weight:700;width:80px">Weight</span>
+              <button class="btn" id="elBold" style="height:32px"><b>Bold</b></button>
+              <button class="btn" id="elNormal" style="height:32px">Normal</button>
+            </div>
+            <div class="row"><span style="font-size:13px;font-weight:700;width:80px">Align</span>
+              <button class="btn" data-align="left" style="height:32px;padding:0 10px">Left</button>
+              <button class="btn" data-align="center" style="height:32px;padding:0 10px">Centre</button>
+              <button class="btn" data-align="right" style="height:32px;padding:0 10px">Right</button>
+            </div>
+            <button class="btn" id="elReset">Reset colours &amp; size I added</button>
+          </div>
+        </div>
+      </div>
+      <div>
+        <h4>Good to know</h4>
+        <p class="hint">Kitten photos in the gallery, prices and brand-new blog posts are managed in <a href="/admin/">the admin</a>. Every save is kept as a backup: use <b>Backups</b> to undo a save.</p>
+      </div>
+    </aside>
+  </div>
+</div>
+
+<div class="overlay" id="seoDlg"><div class="dlg">
+  <h3>How this page shows on Google</h3>
+  <label class="f">Title <span class="count" id="tCount"></span><input id="seoTitle"></label>
+  <label class="f">Description <span class="count" id="dCount"></span><textarea id="seoDesc" rows="4"></textarea></label>
+  <p class="hint">Keep the title under 60 characters and the description under 155. Mention the breed and the area (e.g. "Northern Virginia").</p>
+  <div class="row" style="justify-content:flex-end"><button class="btn" data-close>Cancel</button><button class="btn primary" id="seoOk">Apply</button></div>
+</div></div>
+
+<div class="overlay" id="frDlg"><div class="dlg">
+  <h3>Find &amp; replace on every page</h3>
+  <p class="hint">Changes the exact words everywhere on the site at once: handy for a new phone number, price or email. It also updates what Google and AI tools read.</p>
+  <label class="f">Find<input id="frFind" placeholder="e.g. $1,400"></label>
+  <label class="f">Replace with<input id="frRep" placeholder="e.g. $1,500"></label>
+  <p class="hint" id="frMsg"></p>
+  <div class="row" style="justify-content:flex-end"><button class="btn" data-close>Close</button><button class="btn" id="frScan">Check</button><button class="btn primary" id="frGo" disabled>Replace everywhere</button></div>
+</div></div>
+
+<div class="overlay" id="histDlg"><div class="dlg">
+  <h3>Backups of this page</h3>
+  <p class="hint">Before each save, the previous version is kept on this computer. Restoring loads it into the editor; press Save &amp; publish to put it live.</p>
+  <div id="histList" style="display:flex;flex-direction:column;gap:8px"></div>
+  <div class="row" style="justify-content:flex-end"><button class="btn" data-close>Close</button></div>
+</div></div>
+
+<input type="file" id="fileIn" accept="image/*" hidden>
+
+<script>
+(function(){
+var API='/.netlify/git/github', BRANCH='main';
+var PAGES=[['index.html','Home'],['available-kittens.html','Available Kittens'],['about-us.html','About Us'],['contact-us.html','Contact Us'],['faq.html','FAQ'],['blog.html','Blog (list page)'],['404.html','Page not found (404)']];
+var BLOGS=['himalayan-persian-kitten-cost','himalayan-vs-persian','how-to-choose-healthy-himalayan-kitten','himalayan-persian-grooming-guide','himalayan-cat-colors','bringing-home-new-kitten-checklist','himalayan-kittens-for-sale-virginia','himalayan-cats-health-problems','are-himalayan-cats-good-with-kids','are-himalayan-cats-hypoallergenic','how-long-do-himalayan-cats-live','adopting-two-kittens','male-or-female-himalayan','indoor-himalayan-cat-care'];
+var LIVE={'index.html':'/','available-kittens.html':'/available-kittens/','about-us.html':'/about-us/','contact-us.html':'/contact-us/','faq.html':'/faq/','blog.html':'/blog/','404.html':'/404.html'};
+var PALETTE=['#241f19','#5b5348','#8a5a34','#a1917c','#2f7a3d','#a3321f','#ffffff'];
+var BGS=['transparent','#ffffff','#fbf8f3','#efe4d3','#f3ece1','#241f19'];
+var $=function(id){return document.getElementById(id)};
+var cur=null, sha=null, doctype='<!DOCTYPE html>', dirty=false, sel=null, savedRange=null, hist=[], fut=[], snapT=null, pendingImg=null;
+
+function setStatus(t,c){var s=$('status');s.textContent=t;s.className='status '+(c||'')}
+function setDirty(v){dirty=v;if(v)setStatus('Unsaved changes','dirty')}
+window.addEventListener('beforeunload',function(e){if(dirty){e.preventDefault();e.returnValue=''}});
+
+function b64dec(s){var bin=atob(s.replace(/\n/g,''));var u=new Uint8Array(bin.length);for(var i=0;i<bin.length;i++)u[i]=bin.charCodeAt(i);return new TextDecoder().decode(u)}
+function bytesB64(u){var s='';for(var i=0;i<u.length;i+=0x8000)s+=String.fromCharCode.apply(null,u.subarray(i,i+0x8000));return btoa(s)}
+function b64enc(str){return bytesB64(new TextEncoder().encode(str))}
+async function tok(){var u=netlifyIdentity.currentUser();if(!u)throw new Error('Please log in again');return u.jwt()}
+async function gh(path,opts){opts=opts||{};var t=await tok();var r=await fetch(API+path,Object.assign({},opts,{headers:{Authorization:'Bearer '+t,'Content-Type':'application/json'}}));if(!r.ok){var m=await r.text();var e=new Error(r.status+': '+m.slice(0,200));e.status=r.status;throw e}return r.json()}
+async function getFile(p){var d=await gh('/contents/'+p+'?ref='+BRANCH);var c=d.content;if(!c){var b=await gh('/git/blobs/'+d.sha);c=b.content}return {text:b64dec(c),sha:d.sha}}
+async function putFile(p,b64,sha,msg){var body={message:msg,content:b64,branch:BRANCH};if(sha)body.sha=sha;return gh('/contents/'+p,{method:'PUT',body:JSON.stringify(body)})}
+
+function buildPicker(){var s=$('page');s.innerHTML='';var g1=document.createElement('optgroup');g1.label='Pages';PAGES.forEach(function(p){var o=new Option(p[1],p[0]);g1.appendChild(o)});s.appendChild(g1);
+  var g2=document.createElement('optgroup');g2.label='Blog guides';BLOGS.forEach(function(b){var n=b.replace(/-/g,' ');g2.appendChild(new Option(n.charAt(0).toUpperCase()+n.slice(1),'blog-'+b+'.html'))});s.appendChild(g2)}
+function allFiles(){return PAGES.map(function(p){return p[0]}).concat(BLOGS.map(function(b){return 'blog-'+b+'.html'})).concat(['llms.txt'])}
+function liveUrl(f){return LIVE[f]||(/^blog-/.test(f)?'/blog/'+f.slice(5,-5)+'/':'/'+f)}
+
+var EDITOR_CSS='[data-fk-sel]{outline:2px solid #c0763a!important;outline-offset:2px}body[contenteditable] *:hover{outline:1px dashed rgba(192,118,58,.55);outline-offset:1px}body[contenteditable]{outline:none}img{cursor:pointer}details>summary{cursor:text}';
+
+async function load(file){
+  if(dirty&&!confirm('You have unsaved changes. Leave this page without saving?')){$('page').value=cur;return}
+  setStatus('Loading…');sel=null;showSel();
+  try{var f=await getFile(file)}catch(e){setStatus('Could not load: '+e.message,'err');return}
+  cur=file;sha=f.sha;hist=[];fut=[];
+  var m=f.text.match(/^\s*<!DOCTYPE[^>]*>/i);doctype=m?m[0].trim():'<!DOCTYPE html>';
+  var doc=new DOMParser().parseFromString(f.text,'text/html');
+  doc.querySelectorAll('script').forEach(function(s){var t=s.getAttribute('type');if(t==='application/ld+json')return;s.setAttribute('data-fk-type',t==null?'__none':t);s.setAttribute('type','text/fk-off')});
+  var b=doc.createElement('base');b.href=location.origin+'/';b.setAttribute('data-fk-editor','');doc.head.insertBefore(b,doc.head.firstChild);
+  var st=doc.createElement('style');st.textContent=EDITOR_CSS;st.setAttribute('data-fk-editor','');doc.head.appendChild(st);
+  doc.querySelectorAll('details:not([open])').forEach(function(d){d.setAttribute('open','');d.setAttribute('data-fk-closed','')});
+  doc.body.setAttribute('contenteditable','true');
+  $('frame').onload=wire;
+  $('frame').srcdoc='<!DOCTYPE html>'+doc.documentElement.outerHTML;
+  $('live').href=liveUrl(file);
+  dirty=false;setStatus('Ready');
+}
+
+function fdoc(){return $('frame').contentDocument}
+function wire(){
+  var d=fdoc();if(!d)return;
+  try{d.execCommand('styleWithCSS',false,true)}catch(e){}
+  d.addEventListener('input',function(){setDirty(true);clearTimeout(snapT);snapT=setTimeout(snap,700)});
+  d.addEventListener('submit',function(e){e.preventDefault()},true);
+  d.addEventListener('click',function(e){
+    var a=e.target.closest('a');if(a)e.preventDefault();
+    if(e.target.closest('summary'))e.preventDefault();
+    select(e.target);
+  },true);
+  d.addEventListener('keydown',function(e){
+    if((e.ctrlKey||e.metaKey)&&e.key==='s'){e.preventDefault();save()}
+    if(e.key===' '&&e.target.ownerDocument.getSelection().anchorNode&&(e.target.ownerDocument.getSelection().anchorNode.parentElement||{}).closest&&e.target.ownerDocument.getSelection().anchorNode.parentElement.closest('summary')){e.preventDefault();d.execCommand('insertText',false,' ')}
+  });
+  d.addEventListener('selectionchange',function(){var s=d.getSelection();if(s&&s.rangeCount)savedRange=s.getRangeAt(0).cloneRange()});
+  snap();
+}
+function restoreRange(){var d=fdoc();$('frame').contentWindow.focus();if(savedRange){var s=d.getSelection();s.removeAllRanges();s.addRange(savedRange)}}
+
+function snap(){var d=fdoc();if(!d)return;var h=d.body.innerHTML;if(hist[hist.length-1]!==h){hist.push(h);if(hist.length>80)hist.shift();fut=[]}}
+function restoreSnap(h){var d=fdoc();d.body.innerHTML=h;sel=null;showSel();setDirty(true)}
+$('undo').onclick=function(){if(hist.length<2)return;fut.push(hist.pop());restoreSnap(hist[hist.length-1])};
+$('redo').onclick=function(){if(!fut.length)return;var h=fut.pop();hist.push(h);restoreSnap(h)};
+function changed(){setDirty(true);snap()}
+
+var NAMES={P:'Text',H1:'Main heading',H2:'Heading',H3:'Sub-heading',H4:'Sub-heading',LI:'List item',UL:'List',OL:'List',IMG:'Photo',A:'Link / button',BUTTON:'Button',DETAILS:'FAQ item',SUMMARY:'Question',SECTION:'Section',ARTICLE:'Article',FIGURE:'Photo frame',NAV:'Menu',FOOTER:'Footer',HEADER:'Header',SPAN:'Text',STRONG:'Bold text',EM:'Italic text',B:'Bold text',I:'Italic text',DIV:'Box',BLOCKQUOTE:'Quote',FORM:'Form',IFRAME:'Map'};
+function select(el){
+  var d=fdoc();if(!el||el===d.body||el===d.documentElement){el=null}
+  if(sel)sel.removeAttribute('data-fk-sel');sel=el;if(sel)sel.setAttribute('data-fk-sel','');showSel();
+}
+function showSel(){
+  var box=$('selBox');if(!sel){box.style.display='none';return}box.style.display='flex';
+  var chain=[],n=sel,d=fdoc();while(n&&n!==d.body&&chain.length<5){chain.unshift(n);n=n.parentElement}
+  var c=$('crumbs');c.innerHTML='';chain.forEach(function(el){var b=document.createElement('button');b.className='crumb'+(el===sel?' on':'');b.textContent=NAMES[el.tagName]||el.tagName.toLowerCase();b.onclick=function(){select(el)};c.appendChild(b)});
+  var img=sel.tagName==='IMG'?sel:null;$('imgBox').style.display=img?'block':'none';if(img)$('imgAlt').value=img.getAttribute('alt')||'';
+  var a=sel.closest('a');$('linkBox').style.display=a?'block':'none';if(a){$('linkHref').value=a.getAttribute('href')||'';$('linkNew').checked=a.getAttribute('target')==='_blank'}
+  var fs=parseFloat(getComputedStyle(sel).fontSize);$('elSize').textContent=Math.round(fs)+'px';
+}
+$('bUp').onclick=function(){if(!sel)return;var p=sel.previousElementSibling;if(p){sel.parentNode.insertBefore(sel,p);changed()}};
+$('bDown').onclick=function(){if(!sel)return;var n=sel.nextElementSibling;if(n){sel.parentNode.insertBefore(n,sel);changed()}};
+$('bDup').onclick=function(){if(!sel)return;var c=sel.cloneNode(true);c.removeAttribute('data-fk-sel');sel.after(c);changed()};
+$('bDel').onclick=function(){if(!sel)return;if(!confirm('Delete this '+(NAMES[sel.tagName]||'item').toLowerCase()+'? (You can Undo.)'))return;var s=sel;select(null);s.remove();changed()};
+$('imgAlt').oninput=function(){if(sel&&sel.tagName==='IMG'){sel.setAttribute('alt',this.value);setDirty(true)}};
+$('linkHref').onchange=function(){var a=sel&&sel.closest('a');if(a){a.setAttribute('href',this.value.trim());changed()}};
+$('linkNew').onchange=function(){var a=sel&&sel.closest('a');if(!a)return;if(this.checked){a.setAttribute('target','_blank');a.setAttribute('rel','noopener')}else{a.removeAttribute('target');a.removeAttribute('rel')}changed()};
+
+function swatches(host,list,fn){var h=$(host);list.forEach(function(c){var b=document.createElement('button');b.className='sw';b.title=c;b.style.background=c==='transparent'?'repeating-linear-gradient(45deg,#fff 0 4px,#eee 4px 8px)':c;b.onmousedown=function(e){e.preventDefault()};b.onclick=function(){fn(c)};h.appendChild(b)})}
+swatches('colors',PALETTE,function(c){restoreRange();fdoc().execCommand('foreColor',false,c);changed()});
+$('colorPick').onchange=function(){restoreRange();fdoc().execCommand('foreColor',false,this.value);changed()};
+swatches('elColors',PALETTE,function(c){if(sel){sel.style.color=c;changed()}});
+swatches('elBgs',BGS,function(c){if(sel){sel.style.background=c;changed()}});
+function bump(f){if(!sel)return;var fs=parseFloat(getComputedStyle(sel).fontSize);sel.style.fontSize=Math.max(9,Math.round(fs*f))+'px';showSel();changed()}
+$('elBigger').onclick=function(){bump(1.1)};$('elSmaller').onclick=function(){bump(1/1.1)};
+$('elBold').onclick=function(){if(sel){sel.style.fontWeight='800';changed()}};
+$('elNormal').onclick=function(){if(sel){sel.style.fontWeight='400';changed()}};
+document.querySelectorAll('[data-align]').forEach(function(b){b.onclick=function(){if(sel){sel.style.textAlign=b.dataset.align;changed()}}});
+$('elReset').onclick=function(){if(!sel)return;['color','background','fontSize','fontWeight','textAlign'].forEach(function(k){sel.style[k]=''});showSel();changed()};
+
+document.querySelectorAll('#fmt .tb').forEach(function(b){b.addEventListener('mousedown',function(e){e.preventDefault()})});
+document.querySelectorAll('[data-cmd]').forEach(function(b){b.onclick=function(){restoreRange();fdoc().execCommand(b.dataset.cmd,false,null);changed()}});
+document.querySelectorAll('[data-block]').forEach(function(b){b.onclick=function(){restoreRange();fdoc().execCommand('formatBlock',false,b.dataset.block);changed()}});
+document.querySelectorAll('[data-size]').forEach(function(b){b.onclick=function(){
+  restoreRange();var d=fdoc();var s=d.getSelection();if(!s.rangeCount||s.isCollapsed){alert('Highlight some words first.');return}
+  d.execCommand('styleWithCSS',false,false);d.execCommand('fontSize',false,'7');d.execCommand('styleWithCSS',false,true);
+  d.querySelectorAll('font[size="7"]').forEach(function(f){var sp=d.createElement('span');var base=parseFloat(getComputedStyle(f.parentElement).fontSize);sp.style.fontSize=Math.round(base*parseFloat(b.dataset.size))+'px';while(f.firstChild)sp.appendChild(f.firstChild);f.replaceWith(sp)});
+  changed()}});
+$('linkBtn').onclick=function(){restoreRange();var s=fdoc().getSelection();if(!s.rangeCount||s.isCollapsed){alert('Highlight the words you want to turn into a link first.');return}var u=prompt('Where should this link go?\n(e.g. /contact-us/, https://…, tel:5714793216, mailto:…)','/contact-us/');if(!u)return;restoreRange();fdoc().execCommand('createLink',false,u.trim());changed()};
+
+async function compress(file){
+  var bmp=await createImageBitmap(file);var k=Math.min(1,1800/Math.max(bmp.width,bmp.height));
+  var c=document.createElement('canvas');c.width=Math.round(bmp.width*k);c.height=Math.round(bmp.height*k);c.getContext('2d').drawImage(bmp,0,0,c.width,c.height);
+  var blob=await new Promise(function(r){c.toBlob(r,'image/webp',0.82)});return {blob:blob,w:c.width,h:c.height}
+}
+async function upload(file){
+  setStatus('Uploading photo…');var r=await compress(file);
+  var name=(file.name.replace(/\.[^.]+$/,'').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'')||'photo')+'-'+Date.now().toString(36)+'.webp';
+  var buf=new Uint8Array(await r.blob.arrayBuffer());
+  await putFile('photos/'+name,bytesB64(buf),null,'Upload photo '+name);
+  setStatus('Photo uploaded','ok');return {path:'photos/'+name,url:URL.createObjectURL(r.blob),w:r.w,h:r.h}
+}
+function applyImg(img,u){img.src=u.url;img.setAttribute('data-fk-src',u.path);img.removeAttribute('srcset');img.removeAttribute('sizes');if(img.hasAttribute('width')){img.setAttribute('width',u.w);img.setAttribute('height',u.h)}var pic=img.closest('picture');if(pic)pic.querySelectorAll('source').forEach(function(s){s.remove()})}
+$('imgReplace').onclick=function(){pendingImg=sel;$('fileIn').click()};
+$('imgBtn').onclick=function(){pendingImg='insert';$('fileIn').click()};
+$('fileIn').onchange=async function(){var f=this.files[0];this.value='';if(!f)return;
+  try{var u=await upload(f)}catch(e){setStatus('Upload failed: '+e.message,'err');return}
+  if(pendingImg==='insert'){restoreRange();var d=fdoc();var alt=prompt('Describe the photo in a few words (helps Google):','Himalayan kitten')||'';d.execCommand('insertHTML',false,'<img src="'+u.url+'" data-fk-src="'+u.path+'" alt="'+alt.replace(/"/g,'&quot;')+'" loading="lazy" style="max-width:100%;height:auto;border-radius:14px;display:block;margin:16px 0">')}
+  else if(pendingImg&&pendingImg.tagName==='IMG'){applyImg(pendingImg,u)}
+  changed()};
+
+function openDlg(id){$(id).classList.add('on')}
+document.querySelectorAll('[data-close]').forEach(function(b){b.onclick=function(){b.closest('.overlay').classList.remove('on')}});
+function meta(d,sel){return d.querySelector(sel)}
+$('seoBtn').onclick=function(){var d=fdoc();if(!d)return;$('seoTitle').value=d.title;var m=meta(d,'meta[name="description"]');$('seoDesc').value=m?m.getAttribute('content'):'';cnt();openDlg('seoDlg')};
+function cnt(){$('tCount').textContent=$('seoTitle').value.length+' / 60';$('dCount').textContent=$('seoDesc').value.length+' / 155'}
+$('seoTitle').oninput=cnt;$('seoDesc').oninput=cnt;
+$('seoOk').onclick=function(){var d=fdoc(),t=$('seoTitle').value.trim(),ds=$('seoDesc').value.trim();
+  d.title=t;[['meta[property="og:title"]',t],['meta[name="twitter:title"]',t],['meta[name="description"]',ds],['meta[property="og:description"]',ds],['meta[name="twitter:description"]',ds]].forEach(function(p){var m=meta(d,p[0]);if(m)m.setAttribute('content',p[1])});
+  setDirty(true);$('seoDlg').classList.remove('on')};
+
+function serialize(){
+  var src=fdoc();var d=document.implementation.createHTMLDocument('');d.replaceChild(d.importNode(src.documentElement,true),d.documentElement);
+  d.querySelectorAll('[data-fk-editor]').forEach(function(e){e.remove()});
+  d.body.removeAttribute('contenteditable');
+  d.querySelectorAll('[data-fk-sel]').forEach(function(e){e.removeAttribute('data-fk-sel')});
+  d.querySelectorAll('[data-fk-closed]').forEach(function(e){e.removeAttribute('open');e.removeAttribute('data-fk-closed')});
+  d.querySelectorAll('[data-fk-src]').forEach(function(e){e.setAttribute('src',e.getAttribute('data-fk-src'));e.removeAttribute('data-fk-src')});
+  d.querySelectorAll('script[data-fk-type]').forEach(function(s){var t=s.getAttribute('data-fk-type');if(t==='__none')s.removeAttribute('type');else s.setAttribute('type',t);s.removeAttribute('data-fk-type')});
+  d.querySelectorAll('[style=""]').forEach(function(e){e.removeAttribute('style')});
+  var today=new Date().toISOString().slice(0,10);
+  var faqs=[].slice.call(d.querySelectorAll('details')).map(function(x){var s=x.querySelector('summary');if(!s)return null;var q=(s.querySelector('h2,h3,h4')||s).textContent.trim();var a=[].slice.call(x.children).filter(function(c){return c.tagName!=='SUMMARY'}).map(function(c){return c.textContent.trim()}).join(' ').replace(/\s+/g,' ');return q&&a?{'@type':'Question',name:q,acceptedAnswer:{'@type':'Answer',text:a}}:null}).filter(Boolean);
+  var h1=d.querySelector('h1');
+  d.querySelectorAll('script[type="application/ld+json"]').forEach(function(s){try{var o=JSON.parse(s.textContent);(function walk(v){if(Array.isArray(v))return v.forEach(walk);if(!v||typeof v!=='object')return;var t=[].concat(v['@type']||[]);if(t.indexOf('FAQPage')>-1&&faqs.length)v.mainEntity=faqs;if(t.indexOf('BlogPosting')>-1&&h1)v.headline=h1.textContent.trim();if('dateModified' in v)v.dateModified=today;Object.keys(v).forEach(function(k){walk(v[k])})})(o);s.textContent=JSON.stringify(o)}catch(e){}});
+  return doctype+'\n'+d.documentElement.outerHTML+'\n';
+}
+function backup(file,html){try{var k='fk-backup-'+file;var a=JSON.parse(localStorage.getItem(k)||'[]');a.unshift({t:Date.now(),html:html});localStorage.setItem(k,JSON.stringify(a.slice(0,5)))}catch(e){}}
+async function save(){
+  if(!cur||!fdoc())return;$('save').disabled=true;setStatus('Saving…');
+  try{
+    var prev=await getFile(cur);
+    if(prev.sha!==sha&&!confirm('This page was changed somewhere else since you opened it. Save anyway and overwrite those changes?')){$('save').disabled=false;setStatus('Not saved','err');return}
+    backup(cur,prev.text);
+    var html=serialize();var r=await putFile(cur,b64enc(html),prev.sha,'Edit '+cur+' (page editor)');
+    sha=r.content.sha;dirty=false;setStatus('Saved ✓ Live in about a minute','ok');
+  }catch(e){setStatus('Save failed: '+e.message,'err')}
+  $('save').disabled=false;
+}
+$('save').onclick=save;
+document.addEventListener('keydown',function(e){if((e.ctrlKey||e.metaKey)&&e.key==='s'){e.preventDefault();save()}});
+$('page').onchange=function(){load(this.value)};
+$('view').onclick=function(){var s=$('stage');s.classList.toggle('phone');this.textContent=s.classList.contains('phone')?'🖥 Computer view':'📱 Phone view'};
+
+$('histBtn').onclick=function(){var l=$('histList');l.innerHTML='';var a=[];try{a=JSON.parse(localStorage.getItem('fk-backup-'+cur)||'[]')}catch(e){}
+  if(!a.length)l.innerHTML='<p class="hint">No backups yet for this page. One is made every time you save.</p>';
+  a.forEach(function(b){var r=document.createElement('div');r.className='row';r.style.justifyContent='space-between';r.innerHTML='<span style="font-size:14px">Version from '+new Date(b.t).toLocaleString()+'</span>';var btn=document.createElement('button');btn.className='btn';btn.textContent='Restore';btn.onclick=function(){
+    var doc=new DOMParser().parseFromString(b.html,'text/html');doc.querySelectorAll('script').forEach(function(s){var t=s.getAttribute('type');if(t==='application/ld+json')return;s.setAttribute('data-fk-type',t==null?'__none':t);s.setAttribute('type','text/fk-off')});
+    var bs=doc.createElement('base');bs.href=location.origin+'/';bs.setAttribute('data-fk-editor','');doc.head.insertBefore(bs,doc.head.firstChild);var st=doc.createElement('style');st.textContent=EDITOR_CSS;st.setAttribute('data-fk-editor','');doc.head.appendChild(st);
+    doc.querySelectorAll('details:not([open])').forEach(function(d){d.setAttribute('open','');d.setAttribute('data-fk-closed','')});doc.body.setAttribute('contenteditable','true');
+    $('frame').onload=function(){wire();setDirty(true)};$('frame').srcdoc='<!DOCTYPE html>'+doc.documentElement.outerHTML;$('histDlg').classList.remove('on')};r.appendChild(btn);l.appendChild(r)});
+  openDlg('histDlg')};
+
+var frPlan=null;
+$('frBtn').onclick=function(){if(dirty&&!confirm('Save or undo your current edits first: find & replace works on the saved pages. Continue anyway?'))return;$('frMsg').textContent='';$('frGo').disabled=true;frPlan=null;openDlg('frDlg')};
+$('frFind').oninput=$('frRep').oninput=function(){$('frGo').disabled=true;frPlan=null};
+$('frScan').onclick=async function(){var f=$('frFind').value;if(!f)return;$('frMsg').textContent='Checking every page…';frPlan=[];var total=0;
+  for(const p of allFiles()){try{var x=await getFile(p);var n=x.text.split(f).length-1;if(n){frPlan.push({p:p,x:x,n:n});total+=n}}catch(e){}}
+  $('frMsg').textContent=total?('Found '+total+' time(s) on '+frPlan.length+' page(s): '+frPlan.map(function(i){return i.p.replace('.html','')}).join(', ')):'Not found anywhere. Check spelling and capitals.';$('frGo').disabled=!total};
+$('frGo').onclick=async function(){if(!frPlan)return;var f=$('frFind').value,r=$('frRep').value;$('frGo').disabled=true;var done=0;
+  for(const i of frPlan){try{backup(i.p,i.x.text);var res=await putFile(i.p,b64enc(i.x.text.split(f).join(r)),i.x.sha,'Replace "'+f+'" with "'+r+'"');done++;$('frMsg').textContent='Updated '+done+' of '+frPlan.length+'…';if(i.p===cur)sha=res.content.sha}catch(e){$('frMsg').textContent='Stopped on '+i.p+': '+e.message;return}}
+  $('frMsg').textContent='Done ✓ Updated '+done+' page(s). Live in about a minute.';frPlan=null;dirty=false;load(cur)};
+
+function start(){$('login').style.display='none';$('app').style.display='grid';buildPicker();var q=new URLSearchParams(location.search).get('page');var f=q&&allFiles().indexOf(q)>-1?q:'index.html';$('page').value=f;load(f)}
+netlifyIdentity.on('init',function(u){if(u)start()});
+netlifyIdentity.on('login',function(){netlifyIdentity.close();start()});
+netlifyIdentity.on('logout',function(){location.reload()});
+})();
+</script>
+</body>
+</html>
