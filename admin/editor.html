@@ -115,7 +115,7 @@ label.f input,label.f textarea{border:1px solid #e0d4c3;border-radius:8px;paddin
   </div>
 
   <div class="main">
-    <div class="stage" id="stage"><iframe id="frame" title="Page being edited"></iframe></div>
+    <div class="stage" id="stage"><iframe id="frame" title="Page being edited" sandbox="allow-same-origin allow-modals"></iframe></div>
     <aside class="side" id="side">
       <div>
         <h4>How to edit</h4>
@@ -240,6 +240,7 @@ async function load(file){
   if(dirty&&!confirm('You have unsaved changes. Leave this page without saving?')){$('page').value=cur;return}
   setStatus('Loading…');sel=null;showSel();
   try{var f=await getFile(file)}catch(e){setStatus('Could not load: '+e.message,'err');return}
+  if(/decap-cms|editor\.html/.test(f.text)&&file==='index.html'){setStatus('Problem: the Home page file on GitHub has been replaced by an admin file. Re-upload index.html from the main folder of the zip.','err');return}
   cur=file;sha=f.sha;hist=[];fut=[];
   var m=f.text.match(/^\s*<!DOCTYPE[^>]*>/i);doctype=m?m[0].trim():'<!DOCTYPE html>';
   var doc=new DOMParser().parseFromString(f.text,'text/html');
