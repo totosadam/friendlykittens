@@ -131,16 +131,18 @@ collections:
     files:
       - file: "content/settings.json"
         label: "Pricing & Contact"
+        description: "Updates the price used in the kitten listings only. To change the price in page text and Google descriptions, use Find & replace in the page editor."
         name: "settings"
         fields:
           - {label: "Base adoption price ($)", name: "price", widget: "number", value_type: "int"}
           - {label: "Phone number", name: "phone", widget: "string"}
           - {label: "Email", name: "email", widget: "string"}
   - name: "blog"
-    label: "Blog Posts"
+    label: "New Blog Posts"
+    description: "This list is only for NEW posts you write yourself, so it starts empty. Your 14 existing guides are full pages: to change them, click the brown 'Edit page text & photos' button (bottom right) and open the guide from the page list."
     files:
       - file: "content/posts.json"
-        label: "Blog Posts"
+        label: "Write a new blog post"
         name: "posts"
         fields:
           - label: "Posts"

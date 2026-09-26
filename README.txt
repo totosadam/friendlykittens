@@ -42,4 +42,4 @@ A note on the kittens page
 
 Still to confirm
   - Email address: pages use friendlykittens92@gmail.com
-  - Kitten price is set to $1,400
+  - Kitten price is set to $1,450
